@@ -1,0 +1,102 @@
+﻿
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- ========================================= HOME BANNERS ========================================= -->
+<!-- ========================================= HOME BANNERS : END ========================================= -->
+
+<div id="products-tab" class="wow fadeInUp">
+	<div class="container">
+		<div class="tab-holder">
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#featured" data-toggle="tab">Nổi bật</a></li>
+				<li><a href="#new-arrivals" data-toggle="tab">Mới nhập</a></li>
+				<li><a href="#top-sales" data-toggle="tab">Giảm giá</a></li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div class="tab-pane active" id="featured">
+					<div class="product-grid-holder">
+						<div id="spnoibat">
+							@Html.Action("Sanphamnoibat", "Home")
+						</div>
+					</div>
+					<div class="loadmore-holder text-center">
+						<div id="sphotlink">
+							<a class="btn-loadmore" href='javascript:LoadMorePro(4,"Sanphamnoibat","#sphotlink","#spnoibat")'>
+								<i class="fa fa-plus"></i>
+								Tải thêm
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="tab-pane" id="new-arrivals">
+					<div class="product-grid-holder">
+						<div id="spmoiload">
+							@Html.Action("Sanphammoinhat", "Home")
+						</div>
+					</div>
+					<div class="loadmore-holder text-center">
+						<div id="spmoilink">
+							<a class="btn-loadmore" href='javascript:LoadMorePro(4,"Sanphammoinhat","#spmoilink","#spmoiload")'>
+								<i class="fa fa-plus"></i>
+								Tải thêm
+							</a>
+						</div>
+					</div>
+				</div>
+
+				@*<div class="tab-pane" id="top-sales">
+						<div class="product-grid-holder">
+							<div id="spkmload">
+								@Html.Action("SPKhuyenMai", "Home")
+							</div>
+						</div>
+						<div class="loadmore-holder text-center">
+							<div id="spkmlink">
+								<a class="btn-loadmore" href='javascript:LoadMorePro(4,"SPKhuyenMai","#spkmlink","#spkmload")'>
+									<i class="fa fa-plus"></i>
+									Tải thêm
+								</a>
+							</div>
+						</div>
+					</div>*@
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+function LoadMorePro(skipnum,action,id,id1) {
+    var url = "/Home/"+action;
+    $.ajax({
+        url: url,
+        type: 'Get',
+        data: {skip:skipnum},
+        success: function (result) {
+            var a = result.toString();
+            if (!a)
+            {
+                $(id).html(a);
+            }
+            else
+            {
+                $(id1).append(result);
+                skipnum += 4;
+                var fixa = "<a class=\"btn-loadmore\" href=\'javascript:LoadMorePro(" + skipnum.toString() + ",\"" + action + "\",\"" + id + "\",\"" + id1 + "\")\'>";
+                fixa += "<i class=\"fa fa-plus\"></i>Tải thêm</a>";
+                $(id).html(fixa);
+            }
+        },
+    });
+}
+
+
+</script>
+
+

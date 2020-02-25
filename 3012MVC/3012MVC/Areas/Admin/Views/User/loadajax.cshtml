@@ -1,0 +1,88 @@
+﻿
+@{
+	ViewBag.Title = "loadajax";
+}
+
+@section scripts{
+
+	<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+	<script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
+	<script src="~/Scripts/plugin/mustache.min.js"></script>
+	<script src="~/Scripts/quanliusercontroller.js"></script>
+}
+
+
+
+<button type="button" class="btn btn-info btn-lg" id="myBtn">add</button>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				Tên đăng nhập
+			</th>
+
+			<th>
+				Tên tài khoản
+			</th>
+			<th>
+				Địa chỉ
+			</th>
+			<th>
+				Email
+			</th>
+			<th>
+				số điện thoại
+			</th>
+
+			<th>
+				trạng thái
+			</th>
+			<th>
+				chức vụ
+			</th>
+			<th>
+				#
+			</th>
+
+		</tr>
+	</thead>
+	<tbody id="tbl">
+	</tbody>
+</table>
+
+<script id="data-template" type="x-tpml-mustache">
+	<tr>
+		{{ID}}
+		<td>
+			{{USERNAME}}
+		</td>
+
+		<td>
+			{{NAME}}
+		</td>
+		<td>
+			{{ADDRESS}}
+		</td>
+		<td>
+			{{EMAIL}}
+		</td>
+		<td>
+			{{PHONE}}
+		</td>
+		<td>
+			{{SATUS}}
+		</td>
+		<td>
+			{{GROUPID}}
+		</td>
+		<td>
+			<button class="btn btn-primary btn-edit" data-id="{{ID}}"><i class="fa fa-edit"></i></button>
+
+			<button class="btn btn-primary btn-danger" data-id="{{ID}}"><i>delete</i></button>
+		</td>
+	</tr>
+</script>
+
+@RenderPage("popupView.cshtml")
+

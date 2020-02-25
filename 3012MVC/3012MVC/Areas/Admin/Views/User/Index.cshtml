@@ -1,0 +1,74 @@
+﻿@model IEnumerable<_3012MVC.Models.USSER>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Tên đăng nhập
+        </th>
+      
+        <th>
+           Tên tài khoản
+        </th>
+        <th>
+		Địa chỉ 
+        </th>
+        <th>
+           Email
+        </th>
+        <th>
+           số điện thoại
+        </th>
+        
+        <th>
+           trạng thái
+        </th>
+        <th>
+           chức vụ
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr id="row_@item.ID">
+        <td>
+            @Html.DisplayFor(modelItem => item.USERNAME)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ADDRESS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EMAIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PHONE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SATUS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GROUPID)
+        </td>
+        <td>
+           @Ajax.ActionLink("xóa","Delete",new AjaxOptions {
+			Confirm="bạn có muốn xóa",
+			OnComplete="$('#row_"+item.ID+"').remove()",
+			HttpMethod="Delete"
+			})
+        </td>
+    </tr>
+}
+
+</table>

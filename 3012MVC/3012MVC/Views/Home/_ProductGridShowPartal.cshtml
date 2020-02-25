@@ -1,0 +1,57 @@
+﻿@model _3012MVC.Models.SPHAM
+<div class="product-item">
+	@if (Model.GIA>0)
+	{
+		<div class="ribbon green"><span>Giảm</span></div>
+	}
+	@if (Model.ISNEW == true)
+	{
+		<div class="ribbon green"><span>Mới</span></div>
+	}
+	
+	@*<div class="ribbon blue"><span>new!</span></div>*@
+	@*<div class="ribbon green"><span>bestseller</span></div>*@
+	<div class="image">
+		<img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/images/products/")@Model.ANHDAIDIEN" />
+	</div>
+	<div class="body">
+		<div class="label-discount clear"></div>
+		@*<div class="label-discount green">Giảm 50%</div>*@
+		@*<div class="title">
+			<a href="@Url.Action("Index", "SanPham", new { id = @Model.MASP })">@Model.TENSP</a>
+		</div>*@
+		<div class="brand">@Model.HANGSX</div>
+	</div>
+	<div class="prices">
+		
+		<div class="price-current text-right"> @string.Format("{0:0,0}", Model.GIA)  VNĐ</div>
+	</div>
+	<div class="hover-area">
+		<div class="add-cart-button">
+			<a href="javascript:;" class="le-button" onclick="Addcart('@Model.MASP',1)">Cho vào giỏ</a>
+		</div>
+		<div class="wish-compare">
+			<a class="btn-add-to-wishlist" href="#">Yêu thích</a>
+			<a class="btn-add-to-compare" href="#">So sánh</a>
+		</div>
+	</div>
+</div><!-- /.product-item -->
+<script>
+	 function Addcart(value, sl) {
+        if (sl == 0) {
+            alert("Xác nhận");
+            sl = $('.sl').val();
+        }
+        var url = "/Xuligiohang/Addcart";
+        $.ajax({
+            url: url,
+            type: 'Get',
+            cache: false,
+            data: { sp: value, quantity: sl },
+            success: function (result) {
+                $('.basket').html(result);
+                alert("Thêm thành công");
+            }
+        });
+    }
+</script>

@@ -1,0 +1,4 @@
+C:\Users\vuong\source\repos\3012MVC\Common\bin\Debug\Common.dll
+C:\Users\vuong\source\repos\3012MVC\Common\bin\Debug\Common.pdb
+C:\Users\vuong\source\repos\3012MVC\Common\obj\Debug\Common.dll
+C:\Users\vuong\source\repos\3012MVC\Common\obj\Debug\Common.pdb

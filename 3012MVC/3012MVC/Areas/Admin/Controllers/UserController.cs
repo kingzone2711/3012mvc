@@ -1,4 +1,5 @@
-﻿using _3012MVC.Controllers;
+﻿using _3012MVC.Common;
+using _3012MVC.Controllers;
 using _3012MVC.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,8 @@ using System.Web.Script.Serialization;
 
 namespace _3012MVC.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+	//[HasCredential(RoleID = "VIEW_USER")]
+	public class UserController : Controller
     {
 		// GET: Admin/User
 		Shopbanhang db = new Shopbanhang();
@@ -66,6 +68,18 @@ namespace _3012MVC.Areas.Admin.Controllers
 		public JsonResult deleteuser(int id)
 		{			
 			new userdao().Delete(id);
+			return Json(new
+			{
+				status = true
+			}, JsonRequestBehavior.AllowGet);
+		}
+		[HttpPost]
+		public JsonResult Updatepermision(List<long> id, string status)
+		{
+			foreach (var i in id)
+			{
+				new userdao().UpdateGroupid(i, status);
+			}
 			return Json(new
 			{
 				status = true

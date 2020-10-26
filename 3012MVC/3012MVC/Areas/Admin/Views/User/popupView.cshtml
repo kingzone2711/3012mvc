@@ -1,13 +1,13 @@
-﻿
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
+﻿@section src{
+	
+}
+<link href="~/admin-lte/css/StyleSheet1.css" rel="stylesheet" />
 <div class="container">
 
 	<!-- Trigger the modal with a button -->
-	
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
+	<div class="modal fade" id="myModal" role="dialog" >
+		<div class="modal-dialog" >
 
 			<!-- Modal content-->
 			<div class="modal-content">
@@ -29,6 +29,10 @@
 						<div class="checkbox">
 							<label><input type="checkbox" id="ckStatus">Active</label>
 						</div>
+						<div class="form-group">
+							<label for="txtemail">PassWord:</label>
+							<input type="text" class="form-control" name="txtAddress" id="txtAddress">
+						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -42,92 +46,4 @@
 	</div>
 
 </div>
-@*<script>
-	var user =
-	{
-		inits: function ()
-		{
-			user.registerEvent();
-				
-		},
-			registerEvent: function ()
-			{
-				$('#myBtn').off('click').on('click', function () {
-					$("#myModal").modal();
-				});
-				$('#btnSave').off('click').on('click', function () {
-					user.savedata();
-				});
-				$('.btn-edit').off('click').on('click', function () {
-				$("#myModal").modal();
-				
-			});
-
-					
-		},
-		loaddata: function () {
-			$.ajax({
-			url: '/User/loaddata',
-			type: 'GET',
-			dataType: 'json',
-			success: function (response) {
-				if (response) {
-					var data = response.data;
-					var html = '';
-					var template = $('#data-template').html();
-					$.each(data, function (i, item) {
-						html += Mustache.render(template, {
-							ID: item.ID,
-							USERNAME: item.USERNAME,
-							NAME: item.NAME,
-							ADDRESS: item.ADDRESS,
-							EMAIL: item.EMAIL,
-							PHONE: item.PHONE,
-							SATUS: item.SATUS,
-							GROUPID: item.GROUPID
-
-						});
-					});
-					$('#tbl').html(html);
-				}
-			}
-		});
-		},
-		savedata: function () {
-			var username = $('#txtName').val();
-			var id = parseInt($('#hidID').val());
-			var status = $('#ckStatus').prop('checked');
-			var email = $('#txtemail').val();
-			var USSER= {
-				USERNAME: username,
-				ID: id,
-				SATUS: status,
-				EMAIL: email
-			}
-			$.ajax({
-				url: '/User/savedata',
-				data: {
-
-					struser: JSON.stringify(USSER)
-				},
-				type: 'POST',
-				dataType: 'json',
-				success: function (response) {
-					if (response.status == true) {
-						
-						$("#myModal").modal('hide');
-						user.loaddata();
-
-                    }
-                },
-            error: function (err) {
-                console.log(err);
-            }
-			});
-
-			
-		}
-	}
-	user.inits();
-</script>*@
 

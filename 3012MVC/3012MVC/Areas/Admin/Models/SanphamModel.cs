@@ -10,12 +10,49 @@ namespace _3012MVC.Areas.Admin.Models
 	public class SanphamModel
 	{
 		Shopbanhang db = new Shopbanhang();
-		internal IQueryable<SPHAM> SPMoiNhap()
+		
+		public IQueryable<SPHAM> SPMoiNhap()
 		{
 			var splist = db.SPHAMs.Where(s => s.ISNEW == true);
 			return splist;
 		}
+		public IQueryable<SPHAM>Searchwithname(string name)
+		{
+			IQueryable<SPHAM> sp;
+			sp = db.SPHAMs.Where(x => x.TENSP.Contains(name));
+			return sp;
+		}
+		public IQueryable<SPHAM>Searchaddvend(string ten,string loai,string hangsx,int? max,int? min)
+		{
+			IQueryable<SPHAM> sp=db.SPHAMs;
+			if(!string.IsNullOrEmpty(ten))
+			{
+				sp = Searchwithname(ten);
+			}
+			if(!string.IsNullOrEmpty(loai))
+			{
+				sp = from p in db.SPHAMs where p.LOAISP.Equals(loai) select p;
+			}
+			if (!string.IsNullOrEmpty(hangsx))
+			{
+				sp = from p in db.SPHAMs where p.HANGSX.Equals(hangsx) select p;
+			}
+			if (max!=null)
+			{
+				sp = from p in db.SPHAMs where p.GIA <= max select p;
+			}
+			if (min != null)
+			{
+				sp = from p in db.SPHAMs where p.GIA >= min select p;
+			}
+			return sp;
+		}
+		public IQueryable<SPHAM>Searchbytype(string type)
+		{
+			var sp = from p in db.SPHAMs where p.LOAISP.Equals(type) select p;
+			return sp;
 
+		}
 		public IQueryable<SPHAM>Getsp()
 		{
 			return db.SPHAMs;
@@ -65,6 +102,24 @@ namespace _3012MVC.Areas.Admin.Models
 				if (temp == null)
 					return true;
 				return false;
+			
+		}
+		public void UpdateSoluong(string masp,int? sl,bool? kt)
+		{
+			var s = db.SPHAMs.Find(masp);
+			if(sl!=null)
+			{
+				if (kt == true)
+				{
+					s.SOLUONG += sl;
+				}
+				else if(kt==false)
+				{
+					s.SOLUONG -= sl;
+				}
+				db.Entry(s).State = System.Data.Entity.EntityState.Modified;
+				db.SaveChanges();
+			}
 			
 		}
 	}

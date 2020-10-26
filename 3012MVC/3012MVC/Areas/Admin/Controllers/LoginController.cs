@@ -25,7 +25,7 @@ namespace _3012MVC.Areas.Admin.Controllers
 			if (ModelState.IsValid)
 			{
 				var dao = new userdao();
-				var result = dao.Login(model.UserName, Encryptor.MD5Hash(model.Password), true);
+				var result = dao.Login(model.UserName, Encryptor.MD5Hash(model.Password),true);
 				if (result == 1)
 				{
 					var user = dao.getbyid(model.UserName);
@@ -39,7 +39,7 @@ namespace _3012MVC.Areas.Admin.Controllers
 
 					Session.Add(Commonconst.SESSION_CREDENTIALS, listCredentials);
 					Session.Add(Commonconst.USER_SESSION, userSession);
-					return RedirectToAction("Index", "Home");
+					return RedirectToAction("Index", "DonKh");
 				}
 				else if (result == 0)
 				{
@@ -62,7 +62,7 @@ namespace _3012MVC.Areas.Admin.Controllers
 					ModelState.AddModelError("", "đăng nhập không đúng.");
 				}
 			}
-			return View("Index");
+			return View("index");
 		}
 	}
 }

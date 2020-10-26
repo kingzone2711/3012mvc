@@ -11,7 +11,6 @@ namespace _3012MVC.Controllers
 	public class userdao
 	{
 		Shopbanhang db =new Shopbanhang();
-		
 		public long insert(USSER entity)
 		{
 			db.USSERs.Add(entity);
@@ -47,10 +46,8 @@ namespace _3012MVC.Controllers
 			{
 				return 0;
 			}
-			else
+			else if (isloginadmin == true)
 			{
-				if(isloginadmin==true)
-				{
 					if (result.GROUPID == Commonuser.ADMIN || result.GROUPID == Commonuser.MOD)
 					{
 						if (result.SATUS == false)
@@ -68,22 +65,19 @@ namespace _3012MVC.Controllers
 					{
 						return -3;
 					}
-					
+			}
+			else
+			{
+				if (result.SATUS == false)
+				{
+					return -1;
 				}
 				else
 				{
-					if (result.SATUS == false)
-					{
-						return -1;
-					}
-					else
-					{
-						if (result.PASS == password)
-							return 1;
-						else return -2;
-					}
+					if (result.PASS == password)
+						return 1;
+					else return -2;
 				}
-				
 			}
 		}
 		public bool Delete(int id)
@@ -106,6 +100,43 @@ namespace _3012MVC.Controllers
 			var user = db.USSERs.Find(id);
 			user.SATUS = !user.SATUS;
 			return true;
+		}
+		public bool UpdateGroupid(long id, string status)
+		{
+			if(status==null)
+			{
+				return false;
+			}
+			try
+			{
+				var user = db.USSERs.Find(id);
+				if (user != null)
+				{
+					string query = "update USSER set GROUPID ='" + status + "' where ID ='" + id + "'";
+					db.Database.ExecuteSqlCommand(query);
+					return true;
+				}
+				return false;
+			}
+			catch
+			{
+				return false;
+			}
+		}
+		public long InsertForFacebook(USSER entity)
+		{
+			var user = db.USSERs.SingleOrDefault(x => x.USERNAME== entity.USERNAME);
+			if (user == null)
+			{
+				db.USSERs.Add(entity);
+				db.SaveChanges();
+				return entity.ID;
+			}
+			else
+			{
+				return user.ID;
+			}
+
 		}
 	}
 	

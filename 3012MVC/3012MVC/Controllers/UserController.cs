@@ -5,13 +5,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Facebook;
+using System.Configuration;
 
 namespace _3012MVC.Controllers
 {
     public class UserController : Controller
     {
-        // GET: Userlogin
-        public ActionResult Login()
+		private Uri RedirectUri
+		{
+			get
+			{
+				var uriBuilder = new UriBuilder(Request.Url);
+				uriBuilder.Query = null;
+				uriBuilder.Fragment = null;
+				uriBuilder.Path = Url.Action("FacebookCallback");
+				return uriBuilder.Uri;
+			}
+		}
+		// GET: Userlogin
+		public ActionResult Login()
         {
             return View();
         }
@@ -21,7 +34,7 @@ namespace _3012MVC.Controllers
 			if (ModelState.IsValid)
 			{
 				var dao = new userdao();
-				var result = dao.Login(model.UserName, Encryptor.MD5Hash(model.Password), true);
+				var result = dao.Login(model.UserName, Encryptor.MD5Hash(model.Password),false);
 				if (result == 1)
 				{
 					var user = dao.getbyid(model.UserName);
@@ -58,7 +71,62 @@ namespace _3012MVC.Controllers
 					ModelState.AddModelError("", "đăng nhập không đúng.");
 				}
 			}
-			return View("/");
+		 return RedirectToAction("Login", "User");
+		}
+		public ActionResult LoginFacebook()
+		{
+			var fb = new FacebookClient();
+			var loginUrl = fb.GetLoginUrl(new
+			{
+				client_id = ConfigurationManager.AppSettings["FbAppId"],
+				client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+				redirect_uri = RedirectUri.AbsoluteUri,
+				response_type = "code",
+				scope = "email",
+			});
+
+			return Redirect(loginUrl.AbsoluteUri);
+		}
+		public ActionResult FacebookCallback(string code)
+		{
+			var fb = new FacebookClient();
+			dynamic result = fb.Post("oauth/access_token", new
+			{
+				client_id = ConfigurationManager.AppSettings["FbAppId"],
+				client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+				redirect_uri = RedirectUri.AbsoluteUri,
+				code = code
+			});
+
+
+			var accessToken = result.access_token;
+			if (!string.IsNullOrEmpty(accessToken))
+			{
+				fb.AccessToken = accessToken;
+				// Get the user's information, like email, first name, middle name etc
+				dynamic me = fb.Get("me?fields=first_name,middle_name,last_name,id,email");
+				string email = me.email;
+				string userName = me.email;
+				string firstname = me.first_name;
+				string middlename = me.middle_name;
+				string lastname = me.last_name;
+
+				var user = new USSER();
+				user.EMAIL = email;
+				user.USERNAME = email;
+				user.SATUS = true;
+				user.NAME = firstname + " " + middlename + " " + lastname;
+				user.CREATEDATE = DateTime.Now;
+				var resultInsert = new userdao().InsertForFacebook(user);
+				if (resultInsert > 0)
+				{
+					var userSession = new Userlogin();
+					userSession.Name = user.USERNAME;
+					userSession.UserId = user.ID;
+					Session.Add(Commonconst.USER_SESSION, userSession);
+				}
+			}
+			return Redirect("/");
 		}
 		public ActionResult LogOut()
 		{

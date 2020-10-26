@@ -14,29 +14,17 @@ namespace _3012MVC.Controllers
 {
 	public class HomeController : Controller
 	{
-
+	
 		public ActionResult Index()
 		{
 			return View();
 		}
 
-		public ActionResult About()
-		{
-			ViewBag.Message = "Your application description page.";
-
-			return View();
-		}
-
-		public ActionResult Contact()
-		{
-			ViewBag.Message = "Your contact page.";
-
-			return View();
-		}
+		
 		public ActionResult sendmail(string shipName, string mobile, string address, string email)
 		{
 			try {
-				string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/admin/sendmail.html"));
+				string content = System.IO.File.ReadAllText(Server.MapPath("~/Content/SendEmail.html"));
 
 				content = content.Replace("{{CustomerName}}", shipName);
 				content = content.Replace("{{Phone}}", mobile);
@@ -45,16 +33,46 @@ namespace _3012MVC.Controllers
 
 				var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
 
-				new MailHelper().SendMail(email, "Đơn hàng mới từ OnlineShop", content);
-				new MailHelper().SendMail(toEmail, "Đơn hàng mới từ OnlineShop", content);
+				new MailHelper().SendMail(email, "Đơn hàng mới từ cửa hàng thiết bị điện tử", content);
+				new MailHelper().SendMail(toEmail, "Đơn hàng mới từ cửa hàng thiết bị điện tử", content);
 			}
 			catch
 			{
-				return Redirect("About");
+				return Redirect("view");
 			}
 			return Redirect("/");
 			
 		}
+		
+		public ActionResult Xemdonhang()
+		{
+			List<DonHangModel> dh = new List<DonHangModel>();
+			var userid = (Userlogin)Session[Commonconst.USER_SESSION];
+			long makh = userid.UserId;
+			if (makh>0)
+			{
+
+				DonHangModel temp = new DonHangModel();
+				dh = temp.xemdonhang(makh);
+			}
+			else
+			{
+				return Redirect("/");
+				
+			}
+			return View(dh);
+		}
+		[HttpPost]
+		public ActionResult Huydonhang(string maDH)
+		{
+			DonHangModel dh = new DonHangModel();
+			dh.HuyDH(maDH);
+			var userid = (Userlogin)Session[Commonconst.USER_SESSION];
+			long makh = userid.UserId;
+			var item= dh.xemdonhang(makh);
+			return RedirectToAction("Xemdonhang");
+		}
+		//send email
 		public ActionResult view()
 		{
 			return View();
@@ -108,7 +126,7 @@ namespace _3012MVC.Controllers
 			}
 			else
 			{
-				return RedirectToAction("Index", "Login");
+				return RedirectToAction("Login", "User");
 			}
 		}
 		[HttpPost]
@@ -120,14 +138,58 @@ namespace _3012MVC.Controllers
 				var userid = (Userlogin)Session[Commonconst.USER_SESSION];
 				var id = userid.UserId;
 				dh.Luudonhang(dhtq, id,ManagerObject.getIntance().giohang);
-				return RedirectToAction("Index", "Home");
+				return RedirectToAction("Xemdonhang", "Home");
 			}
 			else
 			{
-				return RedirectToAction("Login");//xu li trang redirec
+				return RedirectToAction("Login","User");//xu li trang redirec
 			}
-			
+		}
+		public ActionResult EditUser()
+		{
+			Shopbanhang db = new Shopbanhang();
+			if (Session.Count > 0)
+			{
+				var userid = (Userlogin)Session[Commonconst.USER_SESSION];
+				var id = userid.UserId;
+				var user = db.USSERs.Find(id);
+				return View(user);
+			}
+			return RedirectToAction("Login", "User");
+		}
+		[HttpPost]
+		public ActionResult UpdateUser(USSER user)
+		{
+			Shopbanhang db = new Shopbanhang();
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					var edituser = db.USSERs.Find(user.ID);
+					edituser.USERNAME = user.USERNAME;
+					edituser.NAME = user.NAME;
+					edituser.ADDRESS = user.ADDRESS;
+					edituser.EMAIL = user.EMAIL;
+					edituser.PHONE = user.PHONE;
+					edituser.MODDIFIEDDATE = DateTime.Now;
+					edituser.CREATEBY = "User";
+					db.SaveChanges();
+					return View("EditUser");
+				}
+				catch
+				{
+					ModelState.AddModelError("", "Cập nhật user không thành công");
 
+				}
+				
+			}
+			return View("EditUser");
+		}
+		public ActionResult MainMenu()
+		{
+			MainMenuModel mnmodel = new MainMenuModel();
+			var menulist = mnmodel.GetMenuList();
+			return PartialView("_MainMenuPartial", menulist);
 		}
 	}
 }

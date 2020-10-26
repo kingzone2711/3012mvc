@@ -1,0 +1,54 @@
+﻿@using _3012MVC.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<KMAI>
+
+
+<table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+	<thead>
+		<tr>
+			<th>@Html.DisplayNameFor(model => model.First().TENCT)</th>
+			<th>@Html.DisplayNameFor(model => model.First().NGAYBATDAU)</th>
+			<th>@Html.DisplayNameFor(model => model.First().NGAYKETTHUC)</th>
+			<th>@Html.DisplayNameFor(model => model.First().ANHCT)</th>
+			<th>#</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				
+				<td class="center">@item.TENCT</td>
+				<td class="center">
+					@if (item.NGAYBATDAU != null)
+					{@item.NGAYBATDAU.Value.ToShortDateString()}
+				</td>
+				<td class="center">
+					@if (item.NGAYKETTHUC != null)
+					{@item.NGAYKETTHUC.Value.ToShortDateString()}
+				</td>
+				<td class="center"><img src="@Url.Content("~/images/khuyenmai/")@item.ANHCT" width="150" height="80" /></td>
+				<td class="center">
+					<a class="btn btn-info" href="@Url.Action("EditKhuyenMai", "KhuyenMai", new { id = item.MAKM })">
+						<i class="glyphicon glyphicon-edit icon-white"></i>
+					</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<div class="pagination-holder">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 text-left">
+			<div id="nav_grid">
+				@Html.PagedListPager(Model, page => Url.Action("TimKhuyenMai", "KhuyenMai", new { key = @ViewBag.key, start = @ViewBag.start, end = @ViewBag.end, page = page }))
+			</div>
+		</div>
+		
+	</div><!-- /.row -->
+</div><!-- /.pagination-holder -->
+
+<div id="show-dialog-detail" style="display:none">
+</div>

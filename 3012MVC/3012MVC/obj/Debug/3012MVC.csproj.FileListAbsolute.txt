@@ -48,11 +48,15 @@ C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\roslyn\vbc.rsp
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\roslyn\VBCSCompiler.exe
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\Antlr3.Runtime.dll
+C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\Common.dll
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\EntityFramework.dll
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\EntityFramework.SqlServer.dll
+C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\Facebook.dll
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\Newtonsoft.Json.dll
+C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\PagedList.dll
+C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\PagedList.Mvc.dll
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\System.Net.Http.Formatting.dll
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\System.Web.Helpers.dll
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\System.Web.Http.dll
@@ -64,8 +68,12 @@ C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\System.Web.WebPages.Deployment.d
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\System.Web.WebPages.dll
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\System.Web.WebPages.Razor.dll
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\WebGrease.dll
+C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\Common.pdb
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\EntityFramework.xml
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\EntityFramework.SqlServer.xml
+C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\Facebook.xml
+C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\PagedList.xml
+C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\PagedList.Mvc.xml
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\System.Web.Helpers.xml
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\System.Web.Mvc.xml
 C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\System.Web.Optimization.xml
@@ -83,5 +91,4 @@ C:\Users\vuong\source\repos\3012MVC\3012MVC\obj\Debug\3012MVC.csprojAssemblyRefe
 C:\Users\vuong\source\repos\3012MVC\3012MVC\obj\Debug\3012MVC.csproj.CopyComplete
 C:\Users\vuong\source\repos\3012MVC\3012MVC\obj\Debug\3012MVC.dll
 C:\Users\vuong\source\repos\3012MVC\3012MVC\obj\Debug\3012MVC.pdb
-C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\Common.dll
-C:\Users\vuong\source\repos\3012MVC\3012MVC\bin\Common.pdb
+C:\Users\vuong\source\repos\3012MVC\3012MVC\obj\Debug\3012MVC.csproj.CoreCompileInputs.cache

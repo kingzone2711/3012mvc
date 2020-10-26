@@ -7,10 +7,12 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using _3012MVC.Areas.Admin.Models;
+using _3012MVC.Common;
 
 namespace _3012MVC.Areas.Admin.Controllers
 {
-	
+
+	[HasCredential(RoleID = "VIEW_USER")]
 	public class SanphamController : Controller
     {
 		

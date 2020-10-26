@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Thaydoimatkhau";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+	<div class="modal fade" id="exampleModalqq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<form action="@Url.Action("Login", "User")" method="post">
+					<center><b><i class="fas fa-keyboard" style="color: green; font-size: 40px;"></i><span style="color: red; font-size: 40px">F</span><span style="color: #4267b2; font-size: 25px;">ree</span><span style="color: green; font-size: 40px;">C</span><span style="color: #4267b2; font-size: 25px;">ode</span></b></center>
+					<center><b style="font-size: 25px;"><i class="fas fa-sign-in-alt">&nbsp;</i>Đăng nhập</b></center>
+					<br />
+					<center style="font-size:15px;"><b>Bạn chưa có tài khoản! <a href="#" style="text-decoration: none; color: green;">Đăng ký ngay</a></b></center>
+					<center style="margin-top: 5%">
+						<input type="email" class="form-control" style="width: 60%" required placeholder="Nhập vào Email của bạn..." name="txtTaiKhoan" />
+						<br />
+						<input type="password" class="form-control" style="width: 60%" required placeholder="Nhập vào mật khẩu của bạn" name="txtMatKhau" />
+						<br />
+						<button class="btn btn-danger" style="width: 60%">Đăng nhập</button>
+						<br />
+					</center>
+					<a href="@Url.Action("GuiMail", "QuenMatKhau")" style="margin-left: 20%; color:orange"><i>Quên mật khẩu?</i></a>
+				</form>
+				</div>
+			</div></div>

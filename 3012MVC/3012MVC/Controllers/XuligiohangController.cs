@@ -47,5 +47,19 @@ namespace _3012MVC.Controllers
 			}
 			return -1;
 		}
+		public ActionResult ThayDoiSoLuong(int index,string value)
+		{
+			ManagerObject.getIntance().giohang.Changequanlity(index, value);
+			return RedirectToAction("XuLiGioHang");
+		}
+		public ActionResult XoaGioHang(int index)
+		{
+			ManagerObject.getIntance().giohang.removeCart(index);
+			return RedirectToAction("XuLiGioHang");
+		}
+		public ActionResult XuLiGioHang()
+		{
+			return PartialView("Basexuligiohang", ManagerObject.getIntance().giohang);
+		}
 	}
 }

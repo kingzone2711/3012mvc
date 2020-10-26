@@ -1,0 +1,36 @@
+﻿@model IQueryable<_3012MVC.Models.CTDONHANG>
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" onclick="closeDialog();">×</button>
+				<h3> Chi tiết đơn hàng #@Model.First().MADONHANG </h3>
+			</div>
+			<div class="modal-body">
+				<table class="table-hover table-bordered">
+					<tr>
+						<th>@Html.DisplayNameFor(model => model.First().SPHAM.TENSP)</th>
+						<th>@Html.DisplayNameFor(model => model.First().SOLUONG)</th>
+						<th>@Html.DisplayNameFor(model => model.First().THANHTIEN)</th>
+					</tr>
+
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>@item.SPHAM.TENSP</td>
+							<td>@item.SOLUONG</td>
+							<td>@string.Format("{0:0,0}", @item.THANHTIEN) </td>
+						</tr>
+					}
+				</table>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<script>
+	function closeDialog() {
+    $('#show-dialog-detail').fadeOut(500);
+}
+</script>

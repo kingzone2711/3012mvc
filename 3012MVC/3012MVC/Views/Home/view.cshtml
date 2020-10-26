@@ -1,39 +1,30 @@
 ﻿
 @{
-    Layout = null;
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<!DOCTYPE html>
+<div class="section group">
+	<div class="col-md-6">
+		@using (Html.BeginForm("sendmail", "Home", FormMethod.Post))
+		{
+			<div class="form-group">
+				<label>Người nhận</label>
+				<input name="shipName" class="form-control form-control-lg" />
+			</div>
+			<div class="form-group">
+				<label>Điện thoại của cửa hàng</label>
+				<input name="mobile" class="form-control form-control-lg" />
+			</div>
+			<div class="form-group">
+				<label>Địa chỉ</label>
+				<input name="address" class="form-control form-control-lg" />
+			</div>
+			<div class="form-group">
+				<label>Email mua hàng</label>
+				<input type="email"  name="email" class="form-control form-control-lg" />
+			</div>
+			<button type="submit" class="btn btn-danger">Gửi đơn hàng</button>
+		}
+	</div>
+</div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>view</title>
-</head>
-<body>
-	<div class="section group">
-		<div class="col-md-6">
-			@using (Html.BeginForm("sendmail", "Home", FormMethod.Post))
-			{
-				<div class="form-group">
-					<label>Người nhận</label>
-					<input name="shipName" class="form-control" />
-				</div>
-				<div class="form-group">
-					<label>Điện thoại</label>
-					<input name="mobile" class="form-control" />
-				</div>
-				<div class="form-group">
-					<label>Địa chỉ</label>
-					<input name="address" class="form-control" />
-				</div>
-				<div class="form-group">
-					<label>Email</label>
-					<input name="email" class="form-control" />
-				</div>
-				<button type="submit" class="btn">Gửi đơn hàng</button>
-			}
-		</div>
-		</div>
-</body>
-</html>

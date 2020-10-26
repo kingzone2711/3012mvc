@@ -1,4 +1,11 @@
 C:\Users\vuong\source\repos\3012MVC\Common\bin\Debug\Common.dll
 C:\Users\vuong\source\repos\3012MVC\Common\bin\Debug\Common.pdb
+C:\Users\vuong\source\repos\3012MVC\Common\bin\Debug\PagedList.dll
+C:\Users\vuong\source\repos\3012MVC\Common\bin\Debug\PagedList.Mvc.dll
+C:\Users\vuong\source\repos\3012MVC\Common\bin\Debug\PagedList.xml
+C:\Users\vuong\source\repos\3012MVC\Common\bin\Debug\PagedList.Mvc.xml
+C:\Users\vuong\source\repos\3012MVC\Common\obj\Debug\Common.csproj.CopyComplete
 C:\Users\vuong\source\repos\3012MVC\Common\obj\Debug\Common.dll
 C:\Users\vuong\source\repos\3012MVC\Common\obj\Debug\Common.pdb
+C:\Users\vuong\source\repos\3012MVC\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\vuong\source\repos\3012MVC\Common\obj\Debug\Common.csprojAssemblyReference.cache

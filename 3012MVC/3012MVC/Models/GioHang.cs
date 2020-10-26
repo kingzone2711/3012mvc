@@ -19,7 +19,7 @@ namespace _3012MVC.Models
 		}
 		public void addCart(ChiTietGioHang a)
 		{
-			cart.Add(a);
+			cart.Add(a);//add vo list trong gio thoi
 		}
 		public bool removeCart(int index)
 		{

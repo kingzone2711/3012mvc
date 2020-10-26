@@ -1,0 +1,88 @@
+﻿@model List<_3012MVC.Models.DonHangModel>
+@{
+	ViewBag.Title = "Xemdonhang";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+	<table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+		<thead>
+			<tr>
+				
+				<th>#</th>
+				<th>Người mua</th>
+				<th>Người Nhận</th>
+				<th>Tổng</th>
+				<th>Ngày mua</th>
+				<th>Trạng thái</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			@for (int i = 0; i < @Model.Count; i++)
+			{
+				<tr>
+					<td rowspan="3">
+						<a class="btn btn-primary" href="javascript:;" onclick="ChiTietItem('@Model[i].donhang.MADONHANG')">xem chi tiết</a>
+					</td>
+					<td class="center" rowspan="3"> @Model[i].nguoimua.NAME</td>
+					<td class="center">
+					 <span style="font-weight:600; color:black" class="left"> Họ tên: @Model[i].nguoimua.NAME</span>
+					</td>
+					<td class="center" rowspan="3"> @Model[i].donhang.TONGTIEN VND</td>
+					<td class="center" rowspan="3"> @Model[i].donhang.NGAYDATMUA</td>
+					<td class="center" rowspan="3">
+						@if (@Model[i].donhang.TINHTRANGDH <= 1)
+						{
+							<div id="itemtrangthai">
+								<i>Trạng thái : @Model[i].tinhtrangdh .</i>
+							</div>
+							<div class="itemnamghichu">
+								<a href="javascript:;" onclick="Huydonhang('@Model[i].donhang.MADONHANG')" class="btn btn-danger">Hủy đơn đặt hàng</a>
+							</div>
+						}
+						else
+						{
+							<div id="itemtrangthai">
+								<i>Trạng thái : @Model[i].tinhtrangdh .</i>
+							</div>
+						}
+					</td>
+					
+				</tr>
+				<tr><td class="left"><span style="font-weight:600; color:black"> Điện thoại:</span>  @Model[i].donhang.DIENTHOAI</td></tr>
+				<tr><td class="left"><span style="font-weight:600; color:black"> Địa chỉ:</span> @Model[i].donhang.DIACHI</td></tr>
+			}
+		</tbody>
+	</table>
+	
+	<div id="show-dialog-detail" style="display:none"></div>
+<script>
+	function Huydonhang(madh) {
+		//can fix bug
+		$.ajax({
+			url: '/Home/Huydonhang',
+			type: 'POST',
+			data: { maDH: madh },
+			dataType: 'json',
+			success: function (response) {
+				location.reload(true);
+			}
+			
+			});
+	}
+	function ChiTietItem( value) {
+    $.ajax({
+        url:'/Admin/DonKh/ChiTietDonHang',
+        type: 'GET',
+        data: { madh: value },
+        success: function (result) {
+            $('#show-dialog-detail').html(result);
+            $('#show-dialog-detail').fadeIn(500);
+           
+        },
+	});
+		}
+</script>
+
+

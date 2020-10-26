@@ -12,6 +12,7 @@ namespace _3012MVC
 						"~/Scripts/jquery-{version}.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+						 "~/Scripts/jquery.unobtrusive*",
 						"~/Scripts/jquery.validate*"));
 
 			// Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -20,11 +21,24 @@ namespace _3012MVC
 						"~/Scripts/modernizr-*"));
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-					  "~/Scripts/bootstrap.js"));
+			
+					  "~/Scripts/bootstrap.js",
+					  "~/Scripts/respond.js"));
 
+			//bundles.Add(new StyleBundle("~/Content/css").Include(
+			//		  "~/Content/bootstrap.css"
+					/*  "~/Content/site.css"*///do content day cai layout di xuong
 			bundles.Add(new StyleBundle("~/Content/css").Include(
-					  "~/Content/bootstrap.css",
-					  "~/Content/site.css"));
+				"~/Content/bootstrap.css",
+				//"~/Content/site.css",
+				"~/admin-lte/css/AdminLTE.css",
+				"~/admin-lte/css/skins/skin-blue.css",
+				//"~/admin-lte/css/skins/_all-skins.css",
+				"~/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"));
+			bundles.Add(new ScriptBundle("~/admin-lte/js").Include(
+			  "~/admin-lte/js/adminlte.js",
+			  "~/admin-lte/plugins/fastclick/fastclick.js",
+			  "~/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"));
 		}
 	}
 }

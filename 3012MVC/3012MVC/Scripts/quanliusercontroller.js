@@ -15,18 +15,21 @@
 			});
 			$(document).on('click', '.btn-edit', function () {
 				$("#myModal").modal();
+				var id = $(this).data('id');
+				user.Loadetail(id);
 
 			});
 			$(document).on('click', '.btn-danger', function () {
-				var id = $(this).data('id');
-				user.delete(id);
-
+				if (confirm("Xác nhận xóa") == true) {
+					var id = $(this).data('id');
+					user.delete(id);
+				}
 			});
 
 		},
 		delete: function (id) {
 			$.ajax({
-				url: '/User/deleteuser',
+				url: '/Admin/User/deleteuser',
 				type: 'POST',
 				data: { id: id },
 				dataType: 'json',
@@ -41,7 +44,7 @@
 		},
 		loaddata: function () {
 			$.ajax({
-				url: '/User/loaddata',
+				url: '/Admin/User/loaddata',
 				type: 'GET',
 				dataType: 'json',
 				success: function (response) {
@@ -79,7 +82,7 @@
 				EMAIL: email
 			}
 			$.ajax({
-				url: '/User/savedata',
+				url: '/Admin/User/savedata',
 				data: {
 
 					struser: JSON.stringify(USSER)
@@ -100,7 +103,34 @@
 			});
 
 
-		}
+		},
+		Loadetail: function (id)
+		{
+			$.ajax({
+				url: '/Admin/User/loaddetai',
+				data: {
+					id: id
+				},
+				type: 'GET',
+				dataType: 'json',
+				success: function (response) {
+					if (response.status == true) {
+						var data = response.data;
+						$('#hidID').val(data.ID);
+						$('#txtName').val(data.NAME);
+						$('#txtAddress').val(data.EMAIL);
+						$('#ckStatus').prop('checked', data.SATUS);
+					}
+					else {
+						bootbox.alert(response.message);
+					}
+				},
+				error: function (err) {
+					console.log(err);
+				}
+			});
+		},
+
 	}
 	user.inits();
 })

@@ -1,0 +1,27 @@
+﻿@using _3012MVC.Models;
+@model List<item>
+<nav id="top-megamenu-nav" class="megamenu-vertical animate-dropdown">
+	<div class="container">
+		<div class="yamm navbar">
+			
+			<div class="collapse navbar-collapse" id="mc-horizontal-menu-collapse">
+				<ul class="nav navbar-nav">
+					@foreach (var item in Model)
+					{
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">@item.lsp.TENLOAI</a>
+
+							<ul class="dropdown-menu">
+								@foreach (var i in item.hsx)
+								{
+									<li><a href="@Url.Action("Addvendsearch", "Search", new { loai = item.lsp.MALOAI, hangsx = i.HANGSX })">@i.TENHANG</a></li>
+								}
+							</ul>
+						</li>
+					}
+					
+				</ul><!-- /.navbar-nav -->
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.navbar -->
+	</div><!-- /.container -->
+</nav><!-- /.megamenu-vertical -->

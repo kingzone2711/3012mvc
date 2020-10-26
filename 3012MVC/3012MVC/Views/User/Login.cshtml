@@ -1,50 +1,78 @@
 ﻿@model _3012MVC.Models.Login
 
-@{
-    ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Login</h2>
-
-@using (Html.BeginForm("Login","User",FormMethod.Post)) 
+<link href="~/template/assets/css/all.min.css" rel="stylesheet" />
+<link href="~/template/assets/css/sb-admin.min.css" rel="stylesheet" />
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-	<h4>Đăng nhập</h4>
-	<hr />
-	<div class="form-group">
-		<label class="control-label col-md-2"></label>
-		<div class="col-md-10">
-			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-		</div>
-	</div>
-	<div class="form-group">
-		@Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-		<div class="col-md-10">
-			@Html.TextBoxFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+	@Html.AntiForgeryToken()
+<body class="bg-dark">
+
+	<div class="container">
+		<div class="card card-login mx-auto mt-5">
+			<div class="card-header">
+				<div class="col-md-10">
+					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+				</div>
+			</div>
+			<div class="card-body">
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.UserName)
+					<div class="form-label-group">
+						@Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Password)
+					<div class="form-label-group">
+						@Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" value="remember-me">
+							Remember Password
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+
+					<div class="container">
+						<div class="row">
+							<div class="col-lg col-10">
+								<input type="submit" value="Đăng nhập" class="btn btn-primary btn-block" />
+							</div>
+						</div>
+					</div>
+					<div class="container">
+						<div class="row">
+							<a class="btn btn-facebook" href="/User/LoginFacebook">
+								<i class='fab fa-facebook' style='font-size:48px;color:blue'></i>
+								Đăng nhập bằng Facebook
+							</a>
+
+
+						</div>
+						<div class="col-sm">
+							<a href="@Url.Action("GuiMail", "QuenMatKhau")" color:orange"><i>Quên mật khẩu?</i></a>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
 		</div>
 	</div>
 
-	<div class="form-group">
-		@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-		<div class="col-md-10">
-			@Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-			@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-		</div>
-	</div>
-
-	<div class="form-group">
-		<div class="col-md-offset-2 col-md-10">
-			<input type="submit" value="Đăng nhập" class="btn btn-default" />
-			<a class="btn btn-facebook" href="/User/LoginFacebook">
-				<i class="fa fa-facebook"></i>
-				Đăng nhập bằng Facebook
-			</a>
-		</div>
-	</div>
-</div>
+	<!-- Bootstrap core JavaScript-->
+	<!-- Core plugin JavaScript <script src="~/Content/admin/vendor/jquery-easing/jquery.easing.min.js"></script>-->
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+	
+</body>
 }
+
 

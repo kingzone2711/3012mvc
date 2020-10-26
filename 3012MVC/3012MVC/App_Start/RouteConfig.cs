@@ -25,19 +25,12 @@ namespace _3012MVC
 				url: "{controller}/{action}/{id}",
 				defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional },
 				namespaces: new[] { "_3012MVC.Controllers" });
-
-			//routes.MapRoute(
-			//		name: "Admin-defaut",
-			//		url: "Admin/{controller}/{action}/{id}",
-			//		defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional },
-			//		namespaces: new[] { "_3012MVC.Areas.Admin.Controllers" }
-			//	);
-			//routes.MapRoute(
-			//		name: "Admin",
-			//		url: "Admin/{controller}/{action}/{id}",
-			//		defaults: new { controller = "User", action = "Index", id = UrlParameter.Optional },
-			//		namespaces: new[] { "_3012MVC.Areas.Admin.Controllers" }
-			//	);
+			routes.MapRoute(
+				name: "search",
+				url: "{controller}/{action}/{id}",
+				defaults: new { controller = "Search", action = "Search", id = UrlParameter.Optional },
+				namespaces: new[] { "_3012MVC.Controllers" });
+			
 		}
 	}
 }

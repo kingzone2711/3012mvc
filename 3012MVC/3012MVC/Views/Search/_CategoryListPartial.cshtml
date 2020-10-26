@@ -1,0 +1,6 @@
+﻿@model  List<_3012MVC.Models.LSANPHAM>
+
+@foreach(var item in Model)
+{
+	<li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("AdvancedSearchView", "Search", new { loai = item.MALOAI })">@item.TENLOAI</a></li>
+}

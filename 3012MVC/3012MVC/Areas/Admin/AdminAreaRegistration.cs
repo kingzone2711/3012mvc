@@ -26,6 +26,18 @@ namespace _3012MVC.Areas.Admin
 				new { controller = "Login", action = "Login", id = UrlParameter.Optional },
 				new[] { "_3012MVC.Areas.Admin.Controllers" }
 			);
+			context.MapRoute(
+				"Admin_QlDonhang",
+				"Admin/{controller}/{action}/{id}",
+				new { controller = "DonKh", action = "Index", id = UrlParameter.Optional },
+				new[] { "_3012MVC.Areas.Admin.Controllers" }
+			);
+			context.MapRoute(
+				"Admin_QlKhuyemai",
+				"Admin/{controller}/{action}/{id}",
+				new { controller = "KhuyenMai", action = "Index", id = UrlParameter.Optional },
+				new[] { "_3012MVC.Areas.Admin.Controllers" }
+			);
 		}
     }
 }

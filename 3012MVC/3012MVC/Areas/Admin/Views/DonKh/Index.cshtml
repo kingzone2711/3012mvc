@@ -1,0 +1,90 @@
+﻿
+@{
+	ViewBag.Title = "Index";
+
+}
+	<div class="row">
+		<div class="box col-md-12">
+			<div class="box-content">
+				<div class="form-inline" style="text-align: right; padding: 10px">
+
+					<div class="input-group">
+						@Html.DropDownList("value", new SelectList(new List<object>
+						{
+							new { value = "1" , text = "Dang duyệt"  },
+							new { value = "2" , text = "Đang giao" },
+							new { value = "3" , text = "Đã giao" },
+							new { value = "4" , text = "Hủy" },
+						}, "value", "text"), "Tình trạng", new { @class = "form-control", id = "trangthai", onchange = "timkiemdh()" })
+					</div>
+
+					
+
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+						<input id="mobile" type="text" class="form-control" placeholder="Số điện thoại" oninput="timkiemdh()">
+					</div>
+
+					
+
+					<div class="input-group">
+						@Html.DropDownList("SetStatus", new SelectList(new List<object>
+						{
+							new { value = "1" , text = "Dang duyệt"  },
+							new { value = "2" , text = "Đang giao" },
+							new { value = "3" , text = "Đã giao" },
+							new { value = "4" , text = "Hủy" },
+						}, "value", "text"), "Thay đổi đơn hàng", new { @class = "form-control", id = "setstatus" })
+
+					</div>
+					<span class="btn btn-danger" onclick="SetStatus('@Url.Action("MultibleUpdate", "DonKh")')" style="cursor:pointer"><i class="fas fa-hammer"></i></span>
+
+				</div>
+				<div class="Ajax-Table" id="Ajax-Table">
+					@Html.Action("Timdonhang", "DonKh")
+				</div>
+			</div>
+		</div>
+	</div>
+<script>
+	function SetStatus(Url)
+	{
+		Checkboxs = document.getElementsByName('lstdel');
+		var lst = new Array();
+		for (var i = 0; i < Checkboxs.length; i++) {
+			if (Checkboxs[i].checked) {
+				lst.push(Checkboxs[i].value);
+			}
+		}
+		var tt = $('#setstatus').val();
+		if (confirm("Xác nhận thay đổi trạng thái đơn hàng") == true) {
+			$.ajax({
+				url: Url,
+				type: 'POST',
+				data: { lst: lst, tt: tt },
+				success: function (response) {
+					 $('.Ajax-Table').html(response);
+					alert('thay doi thanh cong');
+				}
+
+			});
+
+
+		}
+	}
+function timkiemdh() {
+	var key = '';
+    var date = '';
+    var status = $('#trangthai').val();
+    var mobile = $('#mobile').val();
+    $.ajax({
+        url: "/Admin/DonKh/TimDonHang",
+        type: 'GET',
+        data: { key: key, phone: mobile, date: date, status: status },
+        success: function (result) {
+            $('.Ajax-Table').html(result);
+        },
+    });
+}
+	
+</script>

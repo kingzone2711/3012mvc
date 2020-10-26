@@ -41,5 +41,8 @@ namespace _3012MVC.Models
 
 		[StringLength(20)]
 		public string GROUPID { get; set; }
-    }
+		[StringLength(50)]
+		public string Token { get; set; }
+
+	}
 }

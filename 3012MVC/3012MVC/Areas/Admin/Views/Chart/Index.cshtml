@@ -1,0 +1,360 @@
+﻿
+@{
+	ViewBag.Title = "Index";
+
+}
+
+<script src="~/Scripts/chart/exporting.js"></script>
+<script src="~/Scripts/chart/highcharts.js"></script>
+<div>
+	<section class="content-header">
+		<h1>
+			Báo Cáo Thống Kê
+			<small>Một số biểu đồ tròn và mẫu báo cáo. Có hỗ trợ chức năng tải về.</small>
+		</h1>
+		<ol class="breadcrumb">
+			<li><a href="../../Home/Index"><i class="fa fa-home"></i> Trang Chủ</a></li>
+			<li class="active">Báo Cáo Thống Kê</li>
+		</ol>
+	</section>
+	<section class="content">
+		<h4><b>Biểu Đồ:</b></h4>
+		<div class="row">
+			<div class="col-md-6">
+
+				<!-- BAR CHART -->
+				<div class="box box-primary">
+					<div class="box-header with-border">
+						<h3 class="box-title">Thống kê doanh thu đơn hàng</h3>
+
+						<div class="box-tools pull-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-box-tool" data-toggle="dropdown"><i class="fa fa-list-alt"></i></button>
+								<ul class="dropdown-menu panel-dropdown" role="menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+									<li class="divider"></li>
+									<li><a href="#">Separated link</a></li>
+								</ul>
+							</div>
+							<button type="button" class="btn btn-box-tool" data-widget="collapse">
+								<i class="fa fa-minus"></i>
+							</button>
+							@*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>*@
+						</div>
+					</div>
+					<div class="box-body chart-responsive">
+						<div class="chart" id="bar-chart" style="height: 300px;"></div>
+					</div>
+					<script>
+                        $(document).ready(function () {
+        $.getJSON("/Chart/GetData", function (data) {
+                        Highcharts.chart('bar-chart', {
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                                    }
+                                }
+                            },
+                            series: [{
+                                name: 'Tỷ lệ',
+                                colorByPoint: true,
+                                data: [{
+                                    name: 'Đơn hoàn thành',
+                                    y: data.ThanhCong
+
+                                }, {
+                                    name: 'Đơn Đang Giao',
+                                    y: data.DangGiao
+
+                                }, {
+                                    name: 'Đơn bị hủy',
+                                        y: data.BiHuy
+                                }, {
+                                    name: 'Đơn mới',
+                                        y: data.DonMoi
+                                }]
+                            }]
+                        });
+            });
+                        });
+
+					</script>
+					<!-- /.box-body -->
+				</div>
+				<div class="box box-danger">
+					<div class="box-header with-border">
+						<h3 class="box-title">Số lượng các loại thiết bị trong kho</h3>
+
+						<div class="box-tools pull-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-box-tool" data-toggle="dropdown"><i class="fa fa-list-alt"></i></button>
+								<ul class="dropdown-menu panel-dropdown" role="menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+									<li class="divider"></li>
+									<li><a href="#">Separated link</a></li>
+								</ul>
+							</div>
+							<button type="button" class="btn btn-box-tool" data-widget="collapse">
+								<i class="fa fa-minus"></i>
+							</button>
+							@*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>*@
+						</div>
+					</div>
+					<div class="box-body chart-responsive">
+						<div class="chart" id="chuyen-he" style="height: 300px;"></div>
+					</div>
+					<script>
+                        Highcharts.chart('chuyen-he', {
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                                    }
+                                }
+                            },
+                            series: [{
+                                name: 'Tỷ lệ',
+                                colorByPoint: true,
+                                data: [{
+                                    name: 'Điện thoại',
+                                    y: 350
+                                }, {
+                                    name: 'Máy tính',
+                                    y: 300
+
+                                }, {
+                                    name: 'Tai nghe',
+                                    y: 120
+                                }, {
+                                    name: 'bàn phím',
+                                    y: 13
+                                }, {
+                                    name: 'Chuột',
+                                    y: 20
+
+                                }, {
+                                    name: 'pin',
+                                    y: 0
+                                }, {
+                                    name: 'tivi',
+                                    y: 0
+                                }, {
+                                    name: 'linh kiện khác',
+                                    y: 1
+
+                                }]
+                            }]
+                        });
+					</script>
+					<!-- /.box-body -->
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="box box-info">
+					<div class="box-header with-border">
+						<h3 class="box-title">Thị Phần Của Các Hãng Sản Xuất</h3>
+
+						<div class="box-tools pull-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-box-tool" data-toggle="dropdown"><i class="fa fa-list-alt"></i></button>
+								<ul class="dropdown-menu panel-dropdown" role="menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+									<li class="divider"></li>
+									<li><a href="#">Separated link</a></li>
+								</ul>
+							</div>
+							<button type="button" class="btn btn-box-tool" data-widget="collapse">
+								<i class="fa fa-minus"></i>
+							</button>
+							@*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>*@
+						</div>
+					</div>
+					<div class="box-body chart-responsive">
+						<div class="chart" id="event-status" style="height: 300px;"></div>
+					</div>
+					<script>
+                        $(document).ready(function () {
+        $.getJSON("/Chart/GetHang", function (data) {
+                        Highcharts.chart('event-status', {
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                                    }
+                                }
+                            },
+                            series: [{
+                                name: 'Tỷ lệ',
+                                colorByPoint: true,
+                                data: [{
+                                    name: 'Apple',
+                                    y: data.Apple
+                                }, {
+                                    name: 'Samsung',
+                                    y: data.SamSung
+                                }, {
+                                    name: 'Xiaomi',
+                                    y: data.Xiaomi
+                                }, {
+                                    name: 'Dell',
+                                    y: data.Dell
+                                }, {
+                                    name: 'LG',
+                                    y: data.LG
+                                },{
+                                    name: 'Oppo ',
+                                    y: data.Oppo 
+                                },
+								{
+                                    name: 'ElecTronic ',
+                                    y: data.ElecTronic 
+								},
+									{
+										name: 'Nokia',
+										y: data.Nokia
+									},
+								{
+										name: 'Asus',
+										y: data.Asus
+									}]
+                            }]
+                        });
+            });
+                        });
+					</script>
+					<!-- /.box-body -->
+				</div>
+				<div class="box box-success">
+					<div class="box-header with-border">
+						<h3 class="box-title">Nhu cầu khách hàng</h3>
+
+						<div class="box-tools pull-right">
+							<div class="btn-group">
+								<button type="button" class="btn btn-box-tool" data-toggle="dropdown"><i class="fa fa-list-alt"></i></button>
+								<ul class="dropdown-menu panel-dropdown" role="menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+									<li class="divider"></li>
+									<li><a href="#">Separated link</a></li>
+								</ul>
+							</div>
+							<button type="button" class="btn btn-box-tool" data-widget="collapse">
+								<i class="fa fa-minus"></i>
+							</button>
+							@*<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>*@
+						</div>
+					</div>
+					<div class="box-body chart-responsive">
+						<div class="chart" id="fresher-status" style="height: 300px;"></div>
+					</div>
+					<script>
+                        Highcharts.chart('fresher-status', {
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                                    }
+                                }
+                            },
+                            series: [{
+                                name: 'Tỷ lệ',
+                                colorByPoint: true,
+                                data: [{
+                                    name: 'Điện thoại',
+                                    y: 315
+                                }, {
+                                    name: 'laptop',
+                                    y: 100
+                                }, {
+                                    name: 'Tivi',
+                                    y: 0
+                                }, {
+                                    name: 'Thiết bị đeo',
+                                    y: 3
+
+                                }, {
+                                    name: 'Phụ kiện',
+                                    y: 34
+                                }]
+                            }]
+                        });
+					</script>
+					<!-- /.box-body -->
+				</div>
+			</div>
+			<!-- /.box -->
+			<!-- /.col (RIGHT) -->
+		</div>
+		<!-- /.row -->
+	
+
+	</section>
+</div>

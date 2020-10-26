@@ -7,7 +7,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<meta name="keywords" content="MediaCenter, Template, eCommerce">
 	<meta name="robots" content="all">
 	<title>@ViewBag.Title</title>
 	@*<link href="~/Content/style.css" rel="stylesheet" />*@
@@ -15,12 +14,11 @@
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/bootstrap")
 	@Scripts.Render("~/bundles/jqueryval")
-
 	<!-- Bootstrap Core CSS -->
 
-
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="@Url.Content("~/template/assets/css/bootstrap.min.css")">
-
+	@*//<link href="~/admin-lte/css/StyleSheet2.css" rel="stylesheet" />*@
 	<!-- Customizable CSS -->
 	<link rel="stylesheet" href="@Url.Content("~/template/assets/css/main.css")">
 	<link rel="stylesheet" href="@Url.Content("~/template/assets/css/green.css")">
@@ -31,33 +29,35 @@
 	<link rel="stylesheet" href="@Url.Content("~/template/assets/css/config.css")">
 	<link href="@Url.Content("~/template/assets/css/green.css")" rel="alternate stylesheet" title="Green color">
 	<link href="@Url.Content("~/template/assets/css/blue.css")" rel="alternate stylesheet" title="Blue color">
-	<link href="@Url.Content("~/template/assets/css/red.css")" rel="alternate stylesheet" title="Red color">
-	<link href="@Url.Content("~/template/assets/css/orange.css")" rel="alternate stylesheet" title="Orange color">
-	<link href="@Url.Content("~/template/assets/css/navy.css")" rel="alternate stylesheet" title="Navy color">
-	<link href="@Url.Content("~/template/assets/css/dark-green.css")" rel="alternate stylesheet" title="Darkgreen color">
+	<link href="@Url.Content("~/template/assets/css/red.css")" rel="alternate stylesheet" title="red color">
+	<link href="@Url.Content("~/template/assets/css/orange.css")" rel="alternate stylesheet" title="orange color">
+	<link href="@Url.Content("~/template/assets/css/navy.css")" rel="alternate stylesheet" title="navy color">
+	<link href="@Url.Content("~/template/assets/css/dark-green.css")" rel="alternate stylesheet" title="darkgreen color">
 	<!-- Demo Purpose Only. Should be removed in production : END -->
 	<!-- Fonts -->
-	
 	<!-- Icons/Glyphs -->
 	<link rel="stylesheet" href="@Url.Content("~/template/assets/css/font-awesome.min.css")">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="@Url.Content("~/template/assets/images/favicon.ico")">
-	
+	<link href="~/template/assets/css/Style.css" rel="stylesheet" />
+
 </head>
 <body>
 	@*@using Microsoft.AspNet.Identity*@
 	<div class="wrapper">
+
 		<!-- ============================================================= TOP NAVIGATION ============================================================= -->
-		<nav class="top-bar animate-dropdown">
+		<nav class="top-bar animate-dropdown  navheader">
 			<div class="container">
 				<div class="col-xs-12 col-sm-6 no-margin">
-					<ul>
+					<ul class="nav_ul">
 						<li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+						<li><a href="#">Liên hệ</a></li>
+						<li><a href="#">Tin tức</a></li>
 					</ul>
 				</div><!-- /.col -->
 				<div class="col-xs-12 col-sm-6 no-margin">
-					<ul class="right">
+					<ul class="right nav_ul">
 
 						<li><a href="@Url.Action("Index", "Admin")">AdminCP</a></li>
 
@@ -74,9 +74,9 @@
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#user-cp">@*@User.Identity.Name*@</a>
 								<ul class="dropdown-menu" role="menu">
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Manage", "Account")">Cài đặt mật khẩu</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("EditInfo", "Account")">Thông tin cá nhân</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1" href="">Xem đơn hàng</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cài đặt mật khẩu</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("EditUser","Home")">Thông tin cá nhân</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Xemdonhang","Home")">Xem đơn hàng</a></li>
 									@*}*@
 
 
@@ -95,14 +95,17 @@
 		</nav><!-- /.top-bar -->
 		<!-- ============================================================= TOP NAVIGATION : END ============================================================= -->
 		<!-- ============================================================= HEADER ============================================================= -->
-		<header class="no-padding-bottom header-alt">
+		
+		<header class="no-padding-bottom header-alt" style="padding:unset">
+			
 			<div class="container no-padding">
 
 				<div class="col-xs-12 col-md-3 logo-holder">
 					<!-- ============================================================= LOGO ============================================================= -->
 					<div class="logo">
 						<a href="@Url.Action("Index", "Home")">
-							<img alt="logo" src="~/template/assets/images/download.jpg" width="233" height="54" />
+							<img src="~/images/products/scart-mid.png" width="233" height="54" />
+
 							<!--<object id="sp" type="image/svg+xml" data="~/template/assets/images/logo.svg" width="233" height="54"></object>-->
 						</a>
 					</div><!-- /.logo -->
@@ -111,18 +114,18 @@
 				<div class="col-xs-12 col-md-6 top-search-holder no-margin">
 					<div class="contact-row">
 						<div class="social-icons">
-							
+
 						</div><!-- /.social-icons -->
 					</div><!-- /.contact-row -->
 					<!-- ============================================================= SEARCH AREA ============================================================= -->
 					<div class="search-area">
-						@*@Html.Action("SearchForm", "Search")*@
+						@Html.Action("Search", "Search")
 					</div><!-- /.search-area -->
 					<!-- ============================================================= SEARCH AREA : END ============================================================= -->
 				</div><!-- /.top-search-holder -->
 				<div class="col-xs-12 col-md-3 top-cart-row no-margin">
 					<div class="top-cart-row-container">
-						
+
 						<!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
 						<div class="top-cart-holder dropdown animate-dropdown">
 
@@ -134,33 +137,13 @@
 					<!-- ============================================================= SHOPPING CART DROPDOWN : END ============================================================= -->
 				</div><!-- /.top-cart-row -->
 			</div><!-- /.container -->
-			@*@Html.Action("Header", "GiaoDien")*@
+			
 			<!-- ========================================= NAVIGATION ========================================= -->
-			@*@Html.Action("MainMenu", "Home")*@
+			
+			@Html.Action("MainMenu", "Home")
 			<!-- ========================================= NAVIGATION : END ========================================= -->
-			<!--Danh dau duong di-->
-			<div class="animate-dropdown">
-				<!-- ========================================= BREADCRUMB ========================================= -->
-				<div id="breadcrumb-alt">
-					<div class="container">
-						<div class="breadcrumb-nav-holder minimal">
-							<ul>
-
-								@*<li class="breadcrumb-item">
-								<a href="#">Trang chủ</a>
-							</li>*@
-								@*@<li class="breadcrumb-item current">
-								<a href="#">@ViewBag.Title</a>
-							</li>*@
-								@*<li class="breadcrumb-item current">
-								<a href="#">@ViewBag.Title</a>
-							</li>*@
-							</ul>
-						</div><!-- .breadcrumb-nav-holder -->
-					</div><!-- /.container -->
-				</div><!-- /#breadcrumb-alt -->
-				<!-- ========================================= BREADCRUMB : END ========================================= -->
-			</div>
+		
+			
 		</header>
 		<!-- ============================================================= HEADER : END ============================================================= -->
 		<div>
@@ -170,7 +153,210 @@
 		<!-- ============================================================= FOOTER ============================================================= -->
 		<footer id="footer" class="color-bg">
 
-			
+			<div class="container">
+				<div class="row no-margin widgets-row">
+					<div class="col-xs-12  col-sm-4 no-margin-left">
+						<!-- ============================================================= FEATURED PRODUCTS ============================================================= -->
+						<div class="widget">
+							<h2>Sản phẩm giảm giá</h2>
+							<div class="body">
+								<ul>
+									<li>
+										<div class="row">
+											<div class="col-xs-12 col-sm-9 no-margin">
+												<a href="single-product.html">Tai nghe sony</a>
+												<div class="price">
+													<div class="price-prev">500000vnd</div>
+													<div class="price-current">300000vnd</div>
+												</div>
+											</div>
+
+											<div class="col-xs-12 col-sm-3 no-margin">
+												<a href="#" class="thumb-holder">
+													<img src="~/images/products/1.jpg" />
+												</a>
+											</div>
+										</div>
+									</li>
+
+									<li>
+										<div class="row">
+											<div class="col-xs-12 col-sm-9 no-margin">
+												<a href="single-product.html">Samsung galaxy s10+</a>
+												<div class="price">
+													<div class="price-prev">20000000vnd</div>
+													<div class="price-current">18000000vnd</div>
+												</div>
+											</div>
+											<div class="col-xs-12 col-sm-3 no-margin">
+												<a href="#" class="thumb-holder">
+													<img src="~/images/products/5.jpg" />
+												</a>
+											</div>
+										</div>
+									</li>
+
+									<li>
+										<div class="row">
+											<div class="col-xs-12 col-sm-9 no-margin">
+												<a href="single-product.html">Iphone xs</a>
+												<div class="price">
+													<div class="price-prev">15000000vnd</div>
+													<div class="price-current">12000000vnd</div>
+												</div>
+											</div>
+
+											<div class="col-xs-12 col-sm-3 no-margin">
+												<a href="#" class="thumb-holder">
+													<img src="~/images/products/9.jpg" />
+												</a>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div><!-- /.body -->
+						</div> <!-- /.widget -->
+						<!-- ============================================================= FEATURED PRODUCTS : END ============================================================= -->
+					</div><!-- /.col -->
+
+					<div class="col-xs-12 col-sm-4 ">
+						<!-- ============================================================= ON SALE PRODUCTS ============================================================= -->
+						<div class="widget">
+							<h2>
+								Sản phẩm nổi bật
+							</h2>
+							<div class="body">
+								<ul>
+									<li>
+										<div class="row">
+											<div class="col-xs-12 col-sm-9 no-margin">
+												<a href="single-product.html">samsung s20</a>
+												<div class="price">
+													<div class="price-prev">30000000vnd</div>
+													<div class="price-current">25000000vnd</div>
+												</div>
+											</div>
+
+											<div class="col-xs-12 col-sm-3 no-margin">
+												<a href="#" class="thumb-holder">
+													<img src="~/images/products/8.jpg" />
+									
+												</a>
+											</div>
+										</div>
+
+									</li>
+									<li>
+										<div class="row">
+											<div class="col-xs-12 col-sm-9 no-margin">
+												<a href="#">Galaxy Fork</a>
+												<div class="price">
+													<div class="price-prev">25000000vnd</div>
+													<div class="price-current">20000000vnd</div>
+												</div>
+											</div>
+
+											<div class="col-xs-12 col-sm-3 no-margin">
+												<a href="#" class="thumb-holder">
+													<img src="~/images/products/3.jpg" />
+												</a>
+											</div>
+										</div>
+									</li>
+
+									<li>
+										<div class="row">
+											<div class="col-xs-12 col-sm-9 no-margin">
+												<a href="#">apple watch</a>
+												<div class="price">
+													<div class="price-prev">2000000vnd</div>
+													<div class="price-current">1500000vnd</div>
+												</div>
+											</div>
+
+											<div class="col-xs-12 col-sm-3 no-margin">
+												<a href="#" class="thumb-holder">
+													<img src="~/images/products/24.jpg" />
+													
+												</a>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div><!-- /.body -->
+						</div> <!-- /.widget -->
+						<!-- ============================================================= ON SALE PRODUCTS : END ============================================================= -->
+					</div><!-- /.col -->
+
+					<div class="col-xs-12 col-sm-4 ">
+						<!-- ============================================================= TOP RATED PRODUCTS ============================================================= -->
+						<div class="widget">
+							<h2>sản phẩm đánh giá cao</h2>
+							<div class="body">
+								<ul>
+									<li>
+										<div class="row">
+											<div class="col-xs-12 col-sm-9 no-margin">
+												<a href="#">apple watch</a>
+												<div class="price">
+													<div class="price-prev">2000000vnd</div>
+													<div class="price-current">1500000vnd</div>
+												</div>
+											</div>
+
+											<div class="col-xs-12 col-sm-3 no-margin">
+												<a href="#" class="thumb-holder">
+													<img src="~/images/products/20.jpg" />
+													
+												</a>
+											</div>
+										</div>
+									</li>
+
+									<li>
+										<div class="row">
+											<div class="col-xs-12 col-sm-9 no-margin">
+												<a href="#">laptop msi</a>
+												<div class="price">
+													<div class="price-prev">50000000vnd</div>
+													<div class="price-current">30000000vnd</div>
+												</div>
+											</div>
+
+											<div class="col-xs-12 col-sm-3 no-margin">
+												<a href="#" class="thumb-holder">
+													<img src="~/images/products/15.jpg" />
+												</a>
+											</div>
+										</div>
+									</li>
+
+									<li>
+										<div class="row">
+											<div class="col-xs-12 col-sm-9 no-margin">
+												<a href="#">Iphone x</a>
+												<div class="price">
+													<div class="price-prev">15000000vnd</div>
+													<div class="price-current">10000000vnd</div>
+												</div>
+											</div>
+
+											<div class="col-xs-12 col-sm-3 no-margin">
+												<a href="#" class="thumb-holder">
+													<img src="~/images/products/2.jpg" />
+												</a>
+											</div>
+
+										</div>
+									</li>
+								</ul>
+							</div><!-- /.body -->
+						</div><!-- /.widget -->
+						<!-- ============================================================= TOP RATED PRODUCTS : END ============================================================= -->
+					</div><!-- /.col -->
+
+				</div><!-- /.widgets-row-->
+			</div><!-- /.container -->
 			<div class="sub-form-row">
 				<div class="container">
 					<div class="col-xs-12 col-sm-8 col-sm-offset-2 no-padding">
@@ -181,10 +367,91 @@
 					</div>
 				</div><!-- /.container -->
 			</div><!-- /.sub-form-row -->
+			<div class="link-list-row">
+				<div class="container no-padding">
+					<div class="col-xs-12 col-md-4 ">
+						<!-- ============================================================= CONTACT INFO ============================================================= -->
+						<div class="contact-info">
+							<img src="~/images/products/scart-mid.png" />
+
+							<p class="regular-bold">
+								DỊA CHỈ :đường Trần văn ơn.thành phố thủ dầu một,Tỉnh Bình dương
+							</p>
+
+							<div class="social-icons">
+								<h3>Get in touch</h3>
+								<ul>
+									<li><a href="http://facebook.com/transvelo" class="fa fa-facebook"></a></li>
+									<li><a href="#" class="fa fa-twitter"></a></li>
+									<li><a href="#" class="fa fa-pinterest"></a></li>
+									<li><a href="#" class="fa fa-linkedin"></a></li>
+									<li><a href="#" class="fa fa-stumbleupon"></a></li>
+									<li><a href="#" class="fa fa-dribbble"></a></li>
+									<li><a href="#" class="fa fa-vk"></a></li>
+								</ul>
+							</div><!-- /.social-icons -->
+
+						</div>
+						<!-- ============================================================= CONTACT INFO : END ============================================================= -->
+					</div>
+
+					<div class="col-xs-12 col-md-8 no-margin">
+						<!-- ============================================================= LINKS FOOTER ============================================================= -->
+						<div class="link-widget">
+							<div class="widget">
+								<h3>Tìm kiếm nhanh chóng</h3>
+								<ul>
+									<li><a href="category-grid.html">laptops &amp; computers</a></li>
+									<li><a href="category-grid.html">Cameras </a></li>
+									<li><a href="category-grid.html">Smart Phone</a></li>
+									<li><a href="category-grid.html">Video Games</a></li>
+									<li><a href="category-grid.html">TV &amp; Audio</a></li>
+									<li><a href="category-grid.html">Thiết bị đeo</a></li>
+									<li><a href="category-grid.html">Thiết bị GPS</a></li>
+
+								</ul>
+							</div><!-- /.widget -->
+						</div><!-- /.link-widget -->
+
+						<div class="link-widget">
+							<div class="widget">
+								<h3>Thông tin</h3>
+								<ul>
+									<li><a href="category-grid.html">Tìm cửa hàng</a></li>
+									<li><a href="category-grid.html">liên hệ với chúng tôi</a></li>
+									<li><a href="category-grid.html">Giao dịch hàng tuần</a></li>
+									<li><a href="category-grid.html">Thẻ quà tặng</a></li>
+									<li><a href="category-grid.html">Chương trình tái chế</a></li>
+									<li><a href="category-grid.html">Cộng đồng</a></li>
+									<li><a href="category-grid.html">Tuyển dụng</a></li>
+
+								</ul>
+							</div><!-- /.widget -->
+						</div><!-- /.link-widget -->
+
+						<div class="link-widget">
+							<div class="widget">
+								<h3>Thông tin tài khoản</h3>
+								<ul>
+									<li><a href="category-grid.html">Tài khoản của Tôi</a></li>
+									<li><a href="category-grid.html">Theo dõi dơn hàng</a></li>
+									<li><a href="category-grid.html">Danh sách mong muốn</a></li>
+									<li><a href="category-grid.html">Dịch vụ khách hàng</a></li>
+									<li><a href="category-grid.html">Trả về / Trao đổi</a></li>
+									<li><a href="category-grid.html">FAQs</a></li>
+									<li><a href="category-grid.html">hỗ trợ</a></li>
+									<li><a href="category-grid.html">Gói dịch vụ mở rộng</a></li>
+								</ul>
+							</div><!-- /.widget -->
+						</div><!-- /.link-widget -->
+						<!-- ============================================================= LINKS FOOTER : END ============================================================= -->
+					</div>
+				</div><!-- /.container -->
+			</div><!-- /.link-list-row -->
 			<div class="copyright-bar">
 				<div class="container">
 					<div class="col-xs-12 col-sm-6 no-margin">
-						<div class="copyright">		
+						<div class="copyright">
 						</div><!-- /.copyright -->
 					</div>
 					<div class="col-xs-12 col-sm-6 no-margin">
@@ -202,14 +469,13 @@
 		</footer><!-- /#footer -->
 		<!-- ============================================================= FOOTER : END ============================================================= -->
 	</div><!-- /.wrapper -->
-	
 
 
 
 	<script src="@Url.Content("~/template/assets/js/jquery-1.10.2.min.js")"></script>
 	<script src="@Url.Content("~/template/assets/js/jquery-migrate-1.2.1.js")"></script>
-	@*<script src="@Url.Content("~/template/assets/js/bootstrap.min.js")"></script>*@
 	
+
 	<script src="@Url.Content("~/template/assets/js/gmap3.min.js")"></script>
 	<script src="@Url.Content("~/template/assets/js/bootstrap-hover-dropdown.min.js")"></script>
 	<script src="@Url.Content("~/template/assets/js/owl.carousel.min.js")"></script>
@@ -222,7 +488,10 @@
 	<script src="@Url.Content("~/template/assets/js/jquery.customSelect.min.js")"></script>
 	<script src="@Url.Content("~/template/assets/js/wow.min.js")"></script>
 	<script src="@Url.Content("~/template/assets/js/scripts.js")"></script>
-	@*<script src="@Url.Content("~/js/xuliscript.js")"></script>*@
+
+	
+
+
 	<!-- For demo purposes – can be removed on production -->
 
 </body>

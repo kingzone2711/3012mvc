@@ -89,6 +89,35 @@
 		<!-- ========================================= SIDEBAR : END ========================================= -->
 	</div>
 </section>
-
+<script>
+	function changequality(value,tt) {
+		 var id = "quantity+" + value;
+		temp = document.getElementById(id).value;
+		if (temp > 0 && tt == 'G') {
+			temp--;
+		}
+		if (tt == 'T') {
+			temp++;
+		}
+		$.ajax({
+			url: '/Xuligiohang/ThayDoiSoLuong',
+			type: 'GET',
+			data: { index: value, value: temp },
+			success: function (result) {
+				$('#cart-page').html(result.toString());
+			}
+		});
+	}
+	function xoagiohang(value) {
+		$.ajax({
+			url: '/Xuligiohang/XoaGioHang',
+			type: 'GET',
+			data: { index: value},
+			success: function (result) {
+				$('#cart-page').html(result.toString());
+			}
+		});
+	}
+</script>
 
 

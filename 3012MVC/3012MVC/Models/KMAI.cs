@@ -25,6 +25,9 @@ namespace _3012MVC.Models
         [Column(TypeName = "ntext")]
         public string ANHCT { get; set; }
 
+        [Required]
+        [StringLength(128)]
+        public string TENCT { get; set; }
         public virtual SPKHUYENMAI SPKHUYENMAI { get; set; }
     }
 }

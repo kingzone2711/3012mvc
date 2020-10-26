@@ -1,0 +1,33 @@
+﻿@{
+	ViewBag.Title = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+	<div class="box col-md-12">
+		<div class="box-inner">
+		
+			<div class="box-content">
+				<div class="alert alert-info" id="alert-info" style="display:none"></div>
+				<div class="form-inline" padding: 10px">
+
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+						<input id="inputIcon" type="text" class="form-control" placeholder="Tìm kiếm" oninput="timkiemloaiSP()">
+					</div>
+					<div class="input-group">
+						<a class="btn btn-danger" href='javascript:multibledel("@Url.Action("MultibleDel", "LoaiSP")")'>
+							<i class="glyphicon glyphicon-trash icon-white"></i>
+							Xóa các loại đã chọn
+						</a>
+					</div>
+
+				</div>
+				<div class="Ajax-Table">
+					@Html.Action("TimLoaiSP", "LoaiSP")
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!--/span-->
+</div><!--/row-->

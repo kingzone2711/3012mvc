@@ -1,0 +1,77 @@
+﻿@model _3012MVC.Models.USSER
+
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("UpdateUser", "Home",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+       
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+			<div class="col-md-2">
+				Tên đăng nhập
+                </div>
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.USERNAME, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.USERNAME, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+     
+        <div class="form-group">
+			<div class="col-md-2">
+				Tên
+                </div>
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+        <div class="form-group">
+			<div class="col-md-2">
+				Địa chỉ
+                </div>
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.ADDRESS, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.ADDRESS, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+        <div class="form-group">
+			<div class="col-md-2">
+				Email
+                </div>
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+        <div class="form-group">
+			<div class="col-md-2">
+				Điện thoại
+				</div>
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.PHONE, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.PHONE, "", new { @class = "text-danger" })
+				</div>
+			</div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
